@@ -20,7 +20,7 @@ int main(int argc,char *argv[])
             fprintf(2,"Error, child_process don't get pid\n");
             exit(0);
         }
-        close(PIPE_READ);
+        close(PIPE_READ); 
         //子进程开始pingpong
         fprintf(1,"%d: recieved ping\n",pid);
         //将子进程的pid写入管道
