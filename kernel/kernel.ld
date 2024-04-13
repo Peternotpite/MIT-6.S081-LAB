@@ -10,13 +10,13 @@ SECTIONS
   . = 0x80000000;
 
   .text : {
-    *(.text .text.*)
-    . = ALIGN(0x1000);
+    *(.text .text.*)  /* all text section's length 0x80002220*/
+    . = ALIGN(0x1000);  /* 4096 Bytes Align 0x80003000*/
     _trampoline = .;
     *(trampsec)
-    . = ALIGN(0x1000);
+    . = ALIGN(0x1000);  /* put trampoline's section into pa and Align again 0x80004000*/
     ASSERT(. - _trampoline == 0x1000, "error: trampoline larger than one page");
-    PROVIDE(etext = .);
+    PROVIDE(etext = .); /* end of text section 让etext作为global Variable在C中调用*/
   }
 
   .rodata : {
